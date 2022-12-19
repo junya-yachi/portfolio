@@ -1,0 +1,15 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.7.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          BUNDLE_VERSION: 2.1.4
+    image: circleci/mysql:5.7
+    steps:
+      - checkout
+      - ruby/
