@@ -8,8 +8,12 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
-          BUNDLE_VERSION: 2.1.4
+          - BUNDLE_VERSION: 2.1.4
+          - RAILS_ENV: 'test'
     image: circleci/mysql:5.7
     steps:
       - checkout
-      - ruby/
+      - restore_cache:
+        - v1-dependencies-{{ checksum "Gemfile.lock" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
